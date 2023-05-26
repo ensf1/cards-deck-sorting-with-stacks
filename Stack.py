@@ -1,18 +1,13 @@
-import random
-
-from Card import Card
-
-
-class Deck:
-    def __init__(self):
-        self.head = Card()
+class Stack:
+    def __init__(self, head):
+        self.head = head
         self.size = 0
 
     def __str__(self):
         cur = self.head.next
         out = ""
         while cur:
-            out += str(cur.value) + " of " + str(cur.suit) + " -> "
+            out += str(cur) + " -> "
             cur = cur.next
         return out[:-3]
 
@@ -24,10 +19,9 @@ class Deck:
             raise Exception("No top, empty stack")
         return self.head.next.suit
 
-    def push(self):
-        card = Card()
-        card.next = self.head.next
-        self.head.next = card
+    def push(self, node):
+        node.next = self.head.next
+        self.head.next = node
         self.size += 1
 
     def pop(self):

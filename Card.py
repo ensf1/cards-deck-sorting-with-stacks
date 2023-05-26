@@ -8,3 +8,5 @@ class Card:
         self.value = random.randint(1, 10)
         self.next = None
 
+    def __str__(self):
+        return f"{self.value} of {self.suit}"
