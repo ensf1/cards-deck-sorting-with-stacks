@@ -1,32 +1,28 @@
 class Stack:
-    def __init__(self, head):
-        self.head = head
-        self.size = 0
+    def __init__(self):
+        self._stack = []
+
+    def __len__(self):
+        return len(self._stack)
 
     def __str__(self):
-        cur = self.head.next
-        out = ""
-        while cur:
-            out += str(cur) + " -> "
-            cur = cur.next
-        return out[:-3]
+        return str(self._stack)
+
+    def size(self):
+        return self.__len__()
 
     def isEmpty(self):
-        return self.size == 0
+        return len(self._stack) == 0
 
     def top(self):
         if self.isEmpty():
-            raise Exception("No top, empty stack")
-        return self.head.next.suit
+            return None
+        return self._stack[-1]
 
-    def push(self, node):
-        node.next = self.head.next
-        self.head.next = node
-        self.size += 1
+    def push(self, card):
+        self._stack.append(card)
 
     def pop(self):
         if self.isEmpty():
-            raise Exception("Empty stack")
-        remove = self.head.next
-        self.head.next = self.head.next.next
-        self.size -= 1
+            return None
+        return self._stack.pop()
